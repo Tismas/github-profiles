@@ -44,12 +44,13 @@ const getPopularRepos = (reposData: any): Array<Repo> => {
   return reposData
     .map(
       (repoData: any): Repo => ({
-        stars: repoData.watchers as number,
-        name: repoData.name as string,
-        description: repoData.description as string,
+        stars: repoData.watchers,
+        name: repoData.name,
+        description: repoData.description,
+        url: repoData.html_url,
       }),
     )
-    .sort((r1: Repo, r2: Repo) => r1.stars - r2.stars)
+    .sort((r1: Repo, r2: Repo) => r2.stars - r1.stars)
     .slice(0, 3);
 };
 
@@ -57,5 +58,6 @@ const getProfile = (profileData: any, popularRepos: Array<Repo>): Profile => ({
   username: profileData.login,
   avatar: profileData.avatar_url,
   description: profileData.bio,
+  url: profileData.html_url,
   popularRepos: popularRepos,
 });

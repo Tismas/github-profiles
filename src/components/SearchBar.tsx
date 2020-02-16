@@ -1,11 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
-import { LocalizationContext } from './localization/localizationProvider';
+
+import { LocalizationContext } from '../localization/localizationProvider';
+import { StoreContext } from '../store/storeProvider';
 
 export const SearchBar: React.FunctionComponent = () => {
   const labels = React.useContext(LocalizationContext);
+  const {
+    user: { fetchProfile },
+  } = React.useContext(StoreContext);
 
-  return <Search placeholder={labels.INPUT_PLACEHOLDER} />;
+  const fetchOnEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      fetchProfile(e.currentTarget.value);
+    }
+  };
+
+  return <Search onKeyDown={fetchOnEnter} placeholder={labels.INPUT_PLACEHOLDER} />;
 };
 
 const Search = styled.input`

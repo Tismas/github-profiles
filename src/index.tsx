@@ -8,7 +8,7 @@ import { ApiProvider } from './api/apiProvider';
 
 import { StyleReset } from './styledCommons/reset';
 import { theme } from './styledCommons/theme';
-import { App } from './App';
+import { App } from './components/App';
 
 const apiBaseUrl = 'https://api.github.com/';
 const apiFetch = createApiFetch(apiBaseUrl);
