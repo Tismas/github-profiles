@@ -1,8 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import { LocalizationContext } from './localization/localizationProvider';
 
 export const SearchBar: React.FunctionComponent = () => {
-  return <Search placeholder="Provide username and hit enter" />;
+  const labels = React.useContext(LocalizationContext);
+
+  return <Search placeholder={labels.INPUT_PLACEHOLDER} />;
 };
 
 const Search = styled.input`
