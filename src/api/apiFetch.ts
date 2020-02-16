@@ -1,5 +1,5 @@
 interface ApiResponse {
-  data?: unknown;
+  data?: any;
   error?: string;
 }
 
